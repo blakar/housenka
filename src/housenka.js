@@ -1,19 +1,29 @@
 ﻿var game = (function () {
     "use strict";
-    var canvas = $('#canvas')[0];
-    var context = canvas.getContext("2d");
-    var canvasWidth = $('#canvas').width();
-    var canvasHeight = $('#canvas').height();
+    var canvas;
+    var context;
+    var canvasWidth;
+    var canvasHeight;
+    var backgroundColor;
 
-    function paintCanvas() {
-        context.fillStyle = 'orange';
+    function _initCanvas(canvasName) {
+        canvas = $('#' + canvasName)[0];
+        context = canvas.getContext("2d");
+        canvasWidth = $('#' + canvasName).width();
+        canvasHeight = $('#' + canvasName).height();
+    }
+
+    function _paintCanvas() {
+        context.fillStyle = backgroundColor;
         context.fillRect(0, 0, canvasWidth, canvasHeight);
         context.strokeStyle = 'black';
         context.strokeRect(0, 0, canvasWidth, canvasHeight);
     }
 
-    function init() {
-        paintCanvas();
+    function init(options) {
+        _initCanvas(options.canvasName);
+        backgroundColor = options.backColor;
+        _paintCanvas();
     }
 
     return {
@@ -22,7 +32,9 @@
 })();
 
 $(document).ready(function () {
-    game.init();
+    game.init({ canvasName: 'canvas', backColor: 'orange' });
+    game.init({ canvasName: 'another', backColor: 'blue' });
+    game.init({ canvasName: 'test', backColor: 'red' });
 });
 
 
