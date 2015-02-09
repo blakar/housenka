@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="housenka.htm" />
+    <Content Include="housenka.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
