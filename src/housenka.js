@@ -20,10 +20,26 @@
         context.strokeRect(0, 0, canvasWidth, canvasHeight);
     }
 
+    function _updateVisitCount() {
+        var visits = $.cookie("visits");
+        if (typeof (visits) === 'undefined') {
+            visits = 0;
+        }
+        visits++;
+
+        var date = new Date();
+        //var nextYr = new Date().setYear(now.getFullYear() + 1);
+        date.setFullYear(2020, 1, 1);
+
+        $.cookie('visits', visits, { expires: date });
+        return visits;
+    }
+
     function init(options) {
         _initCanvas(options.canvasName);
         backgroundColor = options.backColor;
         _paintCanvas();
+        var visits = _updateVisitCount();
     }
 
     return {
@@ -32,9 +48,7 @@
 })();
 
 $(document).ready(function () {
-    game.init({ canvasName: 'canvas', backColor: 'orange' });
-    game.init({ canvasName: 'another', backColor: 'blue' });
-    game.init({ canvasName: 'test', backColor: 'red' });
+    game.init({ canvasName: 'canvas', backColor : 'orange' });
 });
 
 
