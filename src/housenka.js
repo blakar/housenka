@@ -1,4 +1,4 @@
-﻿var game = (function () {
+﻿var game = (function ($, w, undefined) {
     "use strict";
     var canvas;
     var context;
@@ -45,7 +45,7 @@
     return {
         init: init
     }
-})();
+})(jQuery, window);
 
 $(document).ready(function () {
     game.init({ canvasName: 'canvas', backColor : 'orange' });
